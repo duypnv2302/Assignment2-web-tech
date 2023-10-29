@@ -1,12 +1,11 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams , Link } from 'react-router-dom';
+import SearchCountry from './SearchCountry';
 
 const CountryList = () => {
     const [region, setRegion] = useState(null);
     const [countries, setCountries] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
     const { regionId } = useParams();
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}`)
@@ -21,6 +20,7 @@ const CountryList = () => {
 
     return (
         <div className="container">
+        <SearchCountry />
             {region && (
                 <div>
                     <h1>{region.regionName}</h1>
@@ -31,16 +31,18 @@ const CountryList = () => {
             <div className="row">
                 {countries.map(country => (
                     <div key={country.countryId} className="col-md-4 mb-3">
-                        <div className="card" onClick={() => navigate(`/country-detail/${country.countryId}`)}>
+                        <div className="card" >
                             <img src={country.imageUrl} className="card-img-top" alt={country.countryName} />
+                           
                             <div className="card-body">
                                 <h5 className="card-title">{country.countryName}</h5>
                             </div>
+                            <Link to="/" className="btn btn-primary"> View city </Link>
                         </div>
                     </div>
                 ))}
             </div>
-            <button className="btn btn-primary" onClick={() => navigate(-1)}>Back to Regions</button>
+            <Link to ="/region" className="btn btn-primary">Back to Regions</Link>
         </div>
     );
 };

@@ -15,6 +15,11 @@ root.render(
                 <Route path="/" element={<App />} />
                 <Route path="/region" element={<RegionList />} />
                 <Route path="/region/:regionId" element={<CountryList />} />
+                {/*<Route path="/country/:countryId" element={<CountryDetail />} />*/}
+                {/*<Route path="/country/:countryId" element={<CityList />} />*/}
+                {/*<Route path="/city/:cityId" element={<CityDetail />} />*/}
+                {/*<Route path="region/:countryId" element={<EmissionAndTemData />} />*/}
+                {/*<Route path="city/:cityId" element={<AirQualityData />} /> */}
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

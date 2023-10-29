@@ -1,10 +1,9 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { useNavigate , Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const RegionList = () => {
     const [regions, setRegions] = useState([]);
-    const navigate = useNavigate();
-
+   
     useEffect(() => {
         fetch('http://localhost:5256/api/A_Regions') 
             .then(response => response.json())
