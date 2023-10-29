@@ -22,6 +22,7 @@ function App() {
                     </div>
                 </div>
             </nav>
+            <Outlet />
           </div >
 
   );

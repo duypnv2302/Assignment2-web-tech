@@ -14,7 +14,7 @@ root.render(
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/region" element={<RegionList />} />
-                <Route path="/country/:regionId" element={<CountryList />} />
+                <Route path="/region/:regionId" element={<CountryList />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link } from 'react-router-dom';
 
 const RegionList = () => {
     const [regions, setRegions] = useState([]);
@@ -17,15 +17,20 @@ const RegionList = () => {
             <h2>Regions</h2>
             <div className="row">
                 {regions.map(region => (
+                    
                     <div key={region.regionId} className="col-md-4 mb-3">
-                        <div className="card h-100">
+                        <Link to={"/Region/" + region.regionId}>
+                        <div className="card">
                             <img src={region.imageUrl} className="card-img-top" alt={region.regionName} />
                             <div className="card-body">
                                 <h5 className="card-title">{region.regionName}</h5>
                                 <p className="card-text">Countries: {region.countryCount}</p>
+         
                             </div>
+                            </div>
+                        </Link>
                         </div>
-                    </div>
+                    
                 ))}
             </div>
         </div>
