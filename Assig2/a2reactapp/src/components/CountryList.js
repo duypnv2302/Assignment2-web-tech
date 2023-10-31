@@ -33,7 +33,6 @@ const CountryList = () => {
                     <div key={country.countryId} className="col-md-4 mb-3">
                         <div className="card" >
                             <img src={country.imageUrl} className="card-img-top" alt={country.countryName} />
-                           
                             <div className="card-body">
                                 <h5 className="card-title">{country.countryName}</h5>
                             </div>

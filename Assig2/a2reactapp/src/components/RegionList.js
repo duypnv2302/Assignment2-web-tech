@@ -18,7 +18,7 @@ const RegionList = () => {
                 {regions.map(region => (
                     
                     <div key={region.regionId} className="col-md-4 mb-3">
-                        <Link to={"/Region/" + region.regionId}>
+                        <Link to={"/country/" + region.regionId}>
                         <div className="card">
                             <img src={region.imageUrl} className="card-img-top" alt={region.regionName} />
                             <div className="card-body">

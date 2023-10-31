@@ -6,7 +6,6 @@ function SearchCountry() {
     const [query, setQuery] = useState('');
 
     useEffect(() => {
-        // Use async function within useEffect for fetching data
         const fetchData = async () => {
             try {
                 const response = await fetch(`http://localhost:5256/api/B_Countries/CountrySearch?searchText=${query}`);
@@ -17,12 +16,12 @@ function SearchCountry() {
             }
         };
 
-        // Call fetchData function
+   
         fetchData();
-    }, [query]); // Dependency on query
+    }, [query]);
 
     const searchQuery = (e) => {
-        e.preventDefault(); // Prevent default form submit behavior
+        e.preventDefault(); 
         const value = document.querySelector('[name="searchText"]').value.trim();
         setQuery(value);
     }
@@ -45,7 +44,6 @@ function SearchCountry() {
                             countryId={country.countryId}
                             countryName={country.countryName}
                             imageUrl={country.imageUrl}
-                        // other props if needed
                         />
                     </div>
                 ))}
