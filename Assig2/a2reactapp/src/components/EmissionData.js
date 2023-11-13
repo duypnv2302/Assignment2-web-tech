@@ -31,4 +31,26 @@ const CountryEmissionData = () => {
             .catch(error => console.error('Error:', error));
     }, []);
 
-    
+    // Element Filter Change Handler
+    const handleElementChange = (e) => {
+        setSelectedElement(e.target.value);
+    };
+
+    // Function to group emission data by year and element
+    const getGroupedEmissionData = () => {
+        let groupedData = {};
+        if (emissionData && Array.isArray(emissionData)) {
+            emissionData.forEach(emission => {
+                const year = emission.year;
+                if (!groupedData[year]) {
+                    groupedData[year] = [];
+                }
+                groupedData[year].push(emission);
+            });
+        }
+        return groupedData;
+    };
+
+    const groupedEmissionData = getGroupedEmissionData();
+
+   
