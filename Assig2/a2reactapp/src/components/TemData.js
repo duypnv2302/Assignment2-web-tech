@@ -4,7 +4,7 @@ import CountryCard from './CountryCard';
 
 
 const TemData = () => {
-   // const { countryId } = useParams();
+    // const { countryId } = useParams();
     const [temData, setTemData] = useState(null);
     const [region, setRegion] = useState(null);
     let { countryId, regionId } = useParams();
@@ -26,10 +26,10 @@ const TemData = () => {
         return <div>Loading...</div>;
     }
 
-  
+
 
     return (
-        
+
         <>
             <CountryCard />
             <h2 className="text-center mb-2">Country Temperature Data</h2>
@@ -47,6 +47,7 @@ const TemData = () => {
                     <tr>
                         <th>Year</th>
                         <th>Temperature</th>
+                        <th>Unit</th>
                         <th>Change</th>
                     </tr>
                 </thead>
@@ -54,7 +55,8 @@ const TemData = () => {
                     {temData.map(({ theCountryTempData }) => (
                         <tr key={theCountryTempData.year}>
                             <td>{theCountryTempData.year}</td>
-                            <td>{theCountryTempData.value} {theCountryTempData.unit}</td>
+                            <td>{theCountryTempData.value}</td>
+                            <td>{theCountryTempData.unit}</td>
                             <td>{theCountryTempData.change}</td>
                         </tr>
                     ))}
