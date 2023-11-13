@@ -19,7 +19,7 @@ root.render(
                 {/*<Route path="/country/:countryId" element={<CountryDetail />} />*/}
                 {/*<Route path="/city/:countryId" element={<CityList />} />*/}
                 {/*<Route path="/city/:cityId" element={<CityDetail />} />*/}
-                <Route path="/country/:countryId/temperature" element={<EmissionAndTemData />} />
+                <Route path="/country/:countryId/temperature" element={<TemData />} />
                 {/*<Route path="city/:cityId" element={<AirQualityData />} /> */}
             </Routes>
         </BrowserRouter>
