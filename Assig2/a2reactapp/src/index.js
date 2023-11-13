@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegionList from "./components/RegionList";
 import CountryList from "./components/CountryList";
+import EmissionAndTemData from "./components/EmissionAndTemData";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,7 +19,7 @@ root.render(
                 {/*<Route path="/country/:countryId" element={<CountryDetail />} />*/}
                 {/*<Route path="/city/:countryId" element={<CityList />} />*/}
                 {/*<Route path="/city/:cityId" element={<CityDetail />} />*/}
-                {/*<Route path="country/:countryId" element={<EmissionAndTemData />} />*/}
+                <Route path="/country/:countryId/temperature" element={<EmissionAndTemData />} />
                 {/*<Route path="city/:cityId" element={<AirQualityData />} /> */}
             </Routes>
         </BrowserRouter>
