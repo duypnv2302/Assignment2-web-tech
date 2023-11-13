@@ -3,15 +3,20 @@ import { useParams , Link } from 'react-router-dom';
 
 const CountryCard = () => {
     const [country, setCountry] = useState([]);
-    const { countryId, regionId } = useParams();
+    const { region, setRegion } = useState();
+    let { countryId, regionId } = useParams();
+
 
 
     useEffect(() => {
         fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}`)
             .then(response => response.json())
-            .then(data => setCountry(data))
+            .then(data => {
+                setCountry(country)
+                setRegion(data.theRegion)
+            })
             .catch(error => console.log(error));
-    }, []);
+    }, [regionId, countryId]);
 
     return (
         <div className="row">

@@ -45,7 +45,7 @@ const TemData = () => {
                     <p>Change: {theCountryTempData.change}</p>
                 </div>
             ))}
-            <Link to={`/region/${temData.regionId}`} className="btn btn-primary">Back to Country List</Link>
+            <Link to={`/country/${temData.regionId}`} className="btn btn-primary">Back to Country List</Link>
         </>
     );
 };
