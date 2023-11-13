@@ -18,4 +18,32 @@ const CitySearch = () => {
             })
 
             .catch(error => console.error('Error:', error));
-    }, [countryId]);
+ }, [countryId]);
+
+
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredCities = cities.filter(city =>
+        city.cityName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    return (
+        <div>
+            <input
+                type="text"
+                placeholder="Search cities"
+                value={searchTerm}
+                onChange={handleSearchChange}
+            />
+
+            
+
+            <Link to="/country" className="btn btn-primary">Back to Country List</Link>
+        </div>
+    );
+};
+
+export default CitySearch;
