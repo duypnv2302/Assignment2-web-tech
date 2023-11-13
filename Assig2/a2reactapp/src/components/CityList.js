@@ -35,9 +35,8 @@ const CitySearch = () => {
                 {filteredCities.map(city => (
                     <div key={city.cityID}>
                         <h3>{city.cityName}</h3>
-                        <img src={city.imageUrl} alt={city.cityName} />
                         {city.airQualityYearRange && city.airQualityYearRange.length > 0 && (
-                            <Link to={`/city/${country.countryId}/${city.cityID}/airquality`}>View Air Quality Data</Link>
+                            <Link to={`/city/${city.cityID}/airquality`}>View Air Quality Data</Link>
                         )}
                     </div>
                 ))}
