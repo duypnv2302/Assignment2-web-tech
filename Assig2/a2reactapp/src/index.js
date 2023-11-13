@@ -17,12 +17,14 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/regions" element={<RegionList />} />
-                <Route path="/countries/:regionId" element={<CountryList />} />
+                <Route path="/region" element={<RegionList />} />
+                <Route path="/country/:regionId" element={<CountryList />} />
+                {/*<Route path="/country/:countryId" element={<CountryDetail />} />*/}
+                <Route path="/city/:countryId" element={<CitySearch />} />
+                {/*<Route path="/city/:cityId" element={<CityDetail />} />*/}
                 <Route path="/country/:countryId/temperature" element={<TemData />} />
                 <Route path="/country/:countryId/emission" element={<CountryEmissionData />} />
-                <Route path="/cities/:countryId" element={<CitySearch />} />
-                <Route path="/city/:cityId/airquality" element={<CityAirQuality />} />
+                <Route path="/city/:countryId/:cityId/airquality" element={<CityAirQuality />} /> 
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
