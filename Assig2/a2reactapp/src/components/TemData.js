@@ -31,7 +31,7 @@ const TemData = () => {
     return (
 
         <>
-            <CountryCard />
+           
             <h2 className="text-center mb-2">Country Temperature Data</h2>
             {temData && (
                 <div className="tem-container">

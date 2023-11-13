@@ -29,6 +29,7 @@ const EmissionData = () => {
             .catch(error => console.error('Error:', error));
     };
 
+
     // Handle Element Selection
     const handleElementChange = (e) => {
         setSelectedElement(e.target.value);
