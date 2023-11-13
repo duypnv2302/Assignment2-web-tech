@@ -8,4 +8,14 @@ const CitySearch = () => {
     const [regionName, setRegionName] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
 
-   
+ useEffect(() => {
+        fetch(`http://localhost:5256/api/C_Cities/${countryId}`)
+            .then(response => response.json())
+            .then(data => {
+                setCities(data.cities);
+                setCountryName(data.countryName);
+                setRegionName(data.regionName);
+            })
+
+            .catch(error => console.error('Error:', error));
+    }, [countryId]);
