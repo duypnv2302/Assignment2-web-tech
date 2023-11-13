@@ -15,7 +15,7 @@ const CountryEmissionData = () => {
             .then(data => setCountryData(data))
             .catch(error => console.error('Error:', error));
 
-        fetch(`http://localhost:5256/api/B_Countries/CountryEmissionData/${countryId}`)
+        fetch(`http://localhost:5256/api/B_Countries/CountryTemperatureDetail/${countryId}`)
             .then(response => response.json())
             .then(data => {
                 setEmissionData(data.countryEmissions); 
