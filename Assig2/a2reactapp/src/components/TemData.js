@@ -1,11 +1,14 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import CountryCard from './CountryCard';
 
 
 const TemData = () => {
-    const { countryId } = useParams();
+   // const { countryId } = useParams();
     const [temData, setTemData] = useState(null);
     const [region, setRegion] = useState(null);
+    let { countryId, regionId } = useParams();
+
 
     useEffect(() => {
         fetch(`http://localhost:5256/api/B_Countries/CountryTemperatureDetail/${countryId}`)
@@ -17,7 +20,7 @@ const TemData = () => {
             .catch(error => {
                 console.error('Error fetching temperature data:', error);
             });
-    }, [countryId]);
+    }, [countryId, regionId]);
 
     if (!temData) {
         return <div>Loading...</div>;
@@ -28,6 +31,7 @@ const TemData = () => {
     return (
         
         <>
+            <CountryCard />
             <h2 className="text-center mb-2">Country Temperature Data</h2>
             {temData && (
                 <div className="tem-container">
@@ -38,13 +42,25 @@ const TemData = () => {
                 </div>
             )}
 
-            {temData.map(({ theCountryTempData }) => (
-                <div key={theCountryTempData.year} className="yearly-temperature-data">
-                    <h3>Year: {theCountryTempData.year}</h3>
-                    <p>Temperature: {theCountryTempData.value} {theCountryTempData.unit}</p>
-                    <p>Change: {theCountryTempData.change}</p>
-                </div>
-            ))}
+            <table className="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Temperature</th>
+                        <th>Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {temData.map(({ theCountryTempData }) => (
+                        <tr key={theCountryTempData.year}>
+                            <td>{theCountryTempData.year}</td>
+                            <td>{theCountryTempData.value} {theCountryTempData.unit}</td>
+                            <td>{theCountryTempData.change}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+
             <Link to={`/country/${temData.regionId}`} className="btn btn-primary">Back to Country List</Link>
         </>
     );
