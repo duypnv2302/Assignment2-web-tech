@@ -3,41 +3,56 @@ import { useParams, Link } from 'react-router-dom';
 
 const CityAirQuality = () => {
     const { cityId } = useParams();
-    const [cityAirQualityData, setCityAirQualityData] = useState(null);
+    const [airQualityData, setAirQualityData] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:5256/api/C_Cities/GetAirQualityData/${cityId}`)
             .then(response => response.json())
-            .then(data => setCityAirQualityData(data))
-            .catch(error => console.error('Error:', error));
+            .then(data => setAirQualityData(data))
+            .catch(error => console.error('Error fetching air quality data:', error));
     }, [cityId]);
 
-    if (!cityAirQualityData) {
+    if (!airQualityData) {
         return <div>Loading...</div>;
     }
 
-    const { theCityDetail, theCityAirQualityData } = cityAirQualityData;
+    const { theCityDetail, theCityAirQualityData } = airQualityData;
 
     return (
-        <div className="city-air-quality-container">
-            <h1>Air Quality Data for {theCityDetail.cityName}</h1>
+        <div>
+            <h2>Air Quality Data for {theCityDetail.cityName}</h2>
+            <img src={theCityDetail.imageUrl} alt={theCityDetail.cityName} />
             <p>Country: {theCityDetail.countryName}</p>
             <p>Region: {theCityDetail.regionName}</p>
-            <img src={theCityDetail.imageUrl} alt={theCityDetail.cityName} />
 
-            <div className="air-quality-data">
-                {theCityAirQualityData.map((data, index) => (
-                    <div key={index} className="air-quality-year">
-                        <h2>Year: {data.year}</h2>
-                        <p>PM10 Average: {data.countryPM10Avg}</p>
-                        <p>PM10 Range: {data.countryPM10Min} - {data.countryPM10Max}</p>
-                        <p>PM2.5 Average: {data.countryPM25Avg}</p>
-                        <p>PM2.5 Range: {data.countryPM25Min} - {data.countryPM25Max}</p>
-                    </div>
-                ))}
-            </div>
+            <table className="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>PM10 Average</th>
+                        <th>PM10 Min</th>
+                        <th>PM10 Max</th>
+                        <th>PM2.5 Average</th>
+                        <th>PM2.5 Min</th>
+                        <th>PM2.5 Max</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {theCityAirQualityData.map(item => (
+                        <tr key={item.year}>
+                            <td>{item.year}</td>
+                            <td>{item.countryPM10Avg}</td>
+                            <td>{item.countryPM10Min}</td>
+                            <td>{item.countryPM10Max}</td>
+                            <td>{item.countryPM25Avg}</td>
+                            <td>{item.countryPM25Min}</td>
+                            <td>{item.countryPM25Max}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
 
-            <Link to={`/city/${theCityDetail.countryID}`} className="btn btn-primary">Back to City List</Link>
+            <Link to="/city-list" className="btn btn-primary">Back to City List</Link>
         </div>
     );
 };

@@ -2,7 +2,7 @@
 import { useParams, Link } from 'react-router-dom';
 
 const CitySearch = () => {
-    const { countryId } = useParams();
+    const { countryId, regionId } = useParams();
     const [cities, setCities] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [country, setcountry] = useState();
@@ -12,7 +12,7 @@ const CitySearch = () => {
             .then(response => response.json())
             .then(data => setCities(data))
             .catch(error => console.error('Error:', error));
-    }, [countryId]);
+    }, [countryId, regionId]);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -42,7 +42,7 @@ const CitySearch = () => {
                 ))}
             </div>
 
-            <Link to="/country/${regionId}" className="btn btn-primary">Back to Country List</Link>
+            <Link to={`/country/${regionId}`} className="btn btn-primary">Back to Country List</Link>
         </div>
     );
 };
