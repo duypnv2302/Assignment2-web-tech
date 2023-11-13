@@ -4,22 +4,14 @@ import { useParams, Link } from 'react-router-dom';
 const CitySearch = () => {
     const { countryId } = useParams();
     const [cities, setCities] = useState([]);
-    const [countryName, setCountryName] = useState('');
-    const [regionName, setRegionName] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
 
- useEffect(() => {
+    useEffect(() => {
         fetch(`http://localhost:5256/api/C_Cities/${countryId}`)
             .then(response => response.json())
-         .then(data => setCities(data.cities))
-            .then(data =>  setCountryName(data.countryName))
-               .then(data => setRegionName(data.regionName))
-           
-
+            .then(data => setCities(data))
             .catch(error => console.error('Error:', error));
- }, [countryId]);
-
-
+    }, [countryId]);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -42,6 +34,7 @@ const CitySearch = () => {
                 {filteredCities.map(city => (
                     <div key={city.cityID}>
                         <h3>{city.cityName}</h3>
+                        <img src={city.imageUrl} alt={city.cityName} />
                         {city.airQualityYearRange && city.airQualityYearRange.length > 0 && (
                             <Link to={`/city/${city.cityID}/airquality`}>View Air Quality Data</Link>
                         )}
@@ -49,7 +42,7 @@ const CitySearch = () => {
                 ))}
             </div>
 
-            <Link to="/country" className="btn btn-primary">Back to Country List</Link>
+            <Link to="/country/${regionId}" className="btn btn-primary">Back to Country List</Link>
         </div>
     );
 };
