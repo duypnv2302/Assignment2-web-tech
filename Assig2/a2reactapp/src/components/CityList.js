@@ -39,7 +39,16 @@ const CitySearch = () => {
                 onChange={handleSearchChange}
             />
 
-            
+            <div>
+                {filteredCities.map(city => (
+                    <div key={city.cityID}>
+                        <h3>{city.cityName}</h3>
+                        {city.airQualityYearRange && city.airQualityYearRange.length > 0 && (
+                            <Link to={`/city/${city.cityID}/airquality`}>View Air Quality Data</Link>
+                        )}
+                    </div>
+                ))}
+            </div>
 
             <Link to="/country" className="btn btn-primary">Back to Country List</Link>
         </div>
