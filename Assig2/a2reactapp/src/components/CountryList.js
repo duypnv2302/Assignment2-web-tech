@@ -38,7 +38,8 @@ const CountryList = () => {
                                     <h5 className="card-title">{country.countryName}</h5>
                                 </div>
                                 <Link to={`/city/${country.countryId}`} className="btn btn-primary"> View Cities </Link>
-                                <Link to={`/country/${country.countryId}/temperature`} className="btn btn-primary"> View Temperature and Emission Data </Link>
+                                <Link to={`/country/${country.countryId}/temperature`} className="btn btn-primary"> View Temperature </Link>
+                                <Link to={`/country/${country.countryId}/emission`} className="btn btn-primary"> View Emission </Link>
 
                             </div>
                         </div>
