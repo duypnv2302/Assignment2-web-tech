@@ -53,4 +53,43 @@ const CountryEmissionData = () => {
 
     const groupedEmissionData = getGroupedEmissionData();
 
-   
+    return (
+        <div className="container">
+            {countryData && (
+                <div>
+                    <h2>{countryData.countryName}</h2>
+                    <img src={countryData.imageUrl} alt={countryData.countryName} />
+                    <p>Region: {countryData.regionName}</p>
+                </div>
+            )}
+
+            <select value={selectedElement} onChange={handleElementChange}>
+                <option value="">Select an Element</option>
+                {elementList.map(element => (
+                    <option key={element.elementId} value={element.elementName}>
+                        {element.elementName}
+                    </option>
+                ))}
+            </select>
+
+            {Object.keys(groupedEmissionData).map(year => (
+                <div key={year}>
+                    <h3>Year: {year}</h3>
+                    {groupedEmissionData[year]
+                        .filter(data => selectedElement === '' || data.element === selectedElement)
+                        .map((data, index) => (
+                            <div key={index}>
+                                <p>Element: {data.element}</p>
+                                <p>Value: {data.value} {data.unit}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            ))}
+
+            <Link to="/country" className="btn btn-primary">Back to Country List</Link>
+        </div>
+    );
+};
+
+export default CountryEmissionData;
