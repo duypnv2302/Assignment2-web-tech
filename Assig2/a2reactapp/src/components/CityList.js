@@ -5,6 +5,7 @@ const CitySearch = () => {
     const { countryId } = useParams();
     const [cities, setCities] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [country, setcountry] = useState();
 
     useEffect(() => {
         fetch(`http://localhost:5256/api/C_Cities/${countryId}`)
@@ -36,7 +37,7 @@ const CitySearch = () => {
                         <h3>{city.cityName}</h3>
                         <img src={city.imageUrl} alt={city.cityName} />
                         {city.airQualityYearRange && city.airQualityYearRange.length > 0 && (
-                            <Link to={`/city/${city.cityID}/airquality`}>View Air Quality Data</Link>
+                            <Link to={`/city/${country.countryId}/${city.cityID}/airquality`}>View Air Quality Data</Link>
                         )}
                     </div>
                 ))}

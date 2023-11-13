@@ -9,6 +9,7 @@ import CountryList from "./components/CountryList";
 import TemData from "./components/TemData";
 import CountryEmissionData from './components/EmissionData';
 import CitySearch from './components/CityList';
+import CityAirQuality from './components/AirQualityData';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,7 +24,7 @@ root.render(
                 {/*<Route path="/city/:cityId" element={<CityDetail />} />*/}
                 <Route path="/country/:countryId/temperature" element={<TemData />} />
                 <Route path="/country/:countryId/emission" element={<CountryEmissionData />} />
-                {/*<Route path="city/:cityId" element={<AirQualityData />} /> */}
+                <Route path="/city/:countryId/:cityId/airquality" element={<CityAirQuality />} /> 
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
